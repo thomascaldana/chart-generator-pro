@@ -148,9 +148,17 @@ export const Ul = styled.ul`
   .link-routes{
   text-decoration: none;
   color: #000;
+
 }
-  
-  &:hover{
+
+#sign-up{
+  color: #fff;
+  background: #5340ff;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+&:hover{
       border-bottom: 2px solid lightgray;
     }
   }

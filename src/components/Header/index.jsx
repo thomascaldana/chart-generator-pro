@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Nav, MenuOptions, Ul, LogoImg } from './styles'
 import Logo from '../../assets/imgs/data-lab-icon.svg'
 import { Link } from 'react-router-dom'
@@ -31,9 +30,14 @@ export const Header = () => {
           <LogoImg src={Logo} alt='Logo'></LogoImg>
         </a>
 
+
         <Ul className='nav-links' >
           <li className='li-item'><Link to="/" className='link-routes'>ChartGenerator</Link></li>
           <li className='li-item'><Link to="/ChartExamples" className='link-routes'>Chart Examples</Link></li>
+        </Ul>
+        <Ul className='nav-links' >
+          <li className='li-item'><Link to="/" className='link-routes'>Login</Link></li>
+          <li className='li-item'><Link id='sign-up' to="/ChartExamples" className='link-routes'>Sign up</Link></li>
         </Ul>
 
         <div className='burger-menu' onClick={updateMenu}>
