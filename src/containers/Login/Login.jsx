@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useStytch } from "@stytch/react";
 import { Container } from './Styles.js'
-import { Link } from 'react-router-dom'
+
 
 
 
@@ -11,13 +11,8 @@ const Login = () => {
 
   const stytchClient = useStytch();
 
-  const resetPasswordByEmail = useCallback(() => {
-    stytchClient.passwords.resetByEmailStart({
-      email: "pedro@pedrotech.co",
-    });
-  }, [stytchClient]);
 
-  const showMessage = () => {
+  const resetPasswordByEmail = () => {
     console.log('show message function runned');
     stytchClient.passwords.resetByEmailStart({
       email: email,
@@ -51,7 +46,7 @@ const Login = () => {
 
       <div>
         <p> Forgot your password? </p>
-        <button onClick={showMessage}> Reset password</button>
+        <button onClick={resetPasswordByEmail}> Reset password</button>
         {/*   <Link id='sign-up' to="/resetpassword" className='link-routes'>Reset password Link</Link> */}
 
       </div>
