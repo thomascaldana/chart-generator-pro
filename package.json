@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.2.0",
+    "@stytch/react": "^9.0.0",
+    "@stytch/vanilla-js": "^2.2.1",
     "dotenv": "^16.3.1",
     "git-crypt": "^0.0.1",
     "quickchart-js": "^3.1.3",

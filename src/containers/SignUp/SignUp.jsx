@@ -1,26 +1,29 @@
-// import { useState, useCallback } from "react";
+import { useState } from "react";
 // import { useStytch } from "@stytch/react";
 import { Container } from './Styles.js'
+import { useStytch } from '@stytch/react'
 
 const SignUp = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const stytchClient = useStytch();
+  const stytchClient = useStytch()
 
-  // const resetPasswordByEmail = useCallback(() => {
-  //   stytchClient.passwords.resetByEmailStart({
-  //     email: "pedro@pedrotech.co",
-  //   });
-  // }, [stytchClient]);
+  const signUp = () => {
+    stytchClient.passwords.strengthCheck({ email, password })
+      .then((res) => {
+        console.log("Success", res);
+      })
+      .catch((err) => console.log("Error: ", err));
 
-  // const login = () => {
-  //   stytchClient.passwords.authenticate({
-  //     email,
-  //     password,
-  //     session_duration_minutes: 60,
-  //   });
-  // };
+    stytchClient.passwords.create({
+      email,
+      password,
+      session_duration_minutes: 60
+    })
+  }
+
+
 
   return (
     <Container>
@@ -28,15 +31,16 @@ const SignUp = () => {
 
       <input
         placeholder="Email..."
-
+        onChange={e => setEmail(e.target.value)}
 
       />
       <input
         placeholder="Password..."
+        onChange={e => setPassword(e.target.value)}
 
       />
 
-      <button > Sign Up</button>
+      <button onClick={signUp} > Sign Up</button>
     </Container>
   );
 };
