@@ -36,8 +36,8 @@ export const Header = () => {
           <li className='li-item'><Link to="/ChartExamples" className='link-routes'>Chart Examples</Link></li>
         </Ul>
         <Ul className='nav-links' >
-          <li className='li-item'><Link to="/" className='link-routes'>Login</Link></li>
-          <li className='li-item'><Link id='sign-up' to="/ChartExamples" className='link-routes'>Sign up</Link></li>
+          <li className='li-item'><Link to="/auth" className='link-routes'>Login</Link></li>
+          <li className='li-item'><Link id='sign-up' to="/signup" className='link-routes'>Sign up</Link></li>
         </Ul>
 
         <div className='burger-menu' onClick={updateMenu}>

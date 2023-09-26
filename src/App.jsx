@@ -1,10 +1,13 @@
-import React from "react"
 import GlobalStyles from "./styles/GlobalStyles"
 import ChartGenerator from "./containers/ChartGenerator"
 import { Header } from './components/Header'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import ChartExamples from "./components/ChartExamples"
-import Footer from "./components/Footer"
+import ChartExamples from "./containers/ChartExamples"
+// import Footer from "./components/Footer"
+import Login from "./containers/Login/Login"
+import SignUp from './containers/SignUp/SignUp'
+import ResetPassword from "./containers/ResetPassword/ResetPassword"
+
 
 function App () {
 
@@ -16,8 +19,11 @@ function App () {
         <Routes>
           <Route path="/" element={<ChartGenerator />} />
           <Route path="/ChartExamples" element={<ChartExamples />} />
+          <Route path="/auth" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
         </Routes>
-        <Footer />
+        <button>Logout</button>
       </BrowserRouter>
       <GlobalStyles />
     </div>

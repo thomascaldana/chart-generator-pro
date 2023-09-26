@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { FiDownload } from 'react-icons/fi'
 
 export const FirstTitle = styled.h1`
 font-family: 'Preahvihear',sans-serif;

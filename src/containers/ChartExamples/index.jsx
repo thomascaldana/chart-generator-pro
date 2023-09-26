@@ -1,4 +1,3 @@
-import React from "react";
 import { Container, ContainerItems, FirstTitle, Img } from './styles'
 import chart1 from '../../assets/imgs/chart1.png'
 import chart2 from '../../assets/imgs/chart2.png'
