@@ -1,28 +1,31 @@
-// import { useState, useCallback } from "react";
-// import { useStytch } from "@stytch/react";
+import { useCallback, useState } from "react";
+import { useStytch } from "@stytch/react";
 import { Container } from './Styles.js'
 import { Link } from 'react-router-dom'
 
 
+
 const Login = () => {
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // const stytchClient = useStytch();
+  const stytchClient = useStytch();
 
-  // const resetPasswordByEmail = useCallback(() => {
-  //   stytchClient.passwords.resetByEmailStart({
-  //     email: "pedro@pedrotech.co",
-  //   });
-  // }, [stytchClient]);
+  const resetPasswordByEmail = () => {
+    stytchClient.passwords.resetByEmailStart({
+      email: "caldana3d@gmail.com"
+    });
+    console.log('ok')
+  }
 
-  // const login = () => {
-  //   stytchClient.passwords.authenticate({
-  //     email,
-  //     password,
-  //     session_duration_minutes: 60,
-  //   });
-  // };
+
+  const login = () => {
+    stytchClient.passwords.authenticate({
+      email,
+      password,
+      session_duration_minutes: 60,
+    });
+  };
 
   return (
     <Container>
@@ -30,18 +33,19 @@ const Login = () => {
 
       <input
         placeholder="Email..."
-
+        onChange={e => setEmail(e.target.value)}
       />
       <input
         placeholder="Password..."
+        onChange={e => setPassword(e.target.value)}
 
       />
 
-      <button> Login</button>
+      <button onClick={login}> Login</button>
 
       <div>
         <p> Forgot your password? </p>
-        <button> <Link id='sign-up' to="/resetpassword" className='link-routes'>Reset password</Link></button>
+        <button onClick={resetPasswordByEmail}> <Link id='sign-up' to="/resetpassword" className='link-routes'>Reset password</Link></button>
 
       </div>
       {/* <Footer /> */}

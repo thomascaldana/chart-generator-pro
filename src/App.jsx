@@ -14,9 +14,13 @@ import { StytchProvider } from "@stytch/react"
 function App () {
 
   const stytchClient = new StytchHeadlessClient("public-token-test-3f407f39-b779-440c-a64c-18d260212048")
+  // relax, this token is old, used just for testing, you won't be able to use that
 
   // when publishing create a token in GithuB and a Env key to improve secure about the key
 
+  const logout = () => {
+    stytchClient.session.revoke();
+  }
 
   return (
     <div className="App">
@@ -28,9 +32,9 @@ function App () {
             <Route path="/ChartExamples" element={<ChartExamples />} />
             <Route path="/auth" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/resetpassword" element={<ResetPassword />} />
+            <Route path="/resetpassword/*" element={<ResetPassword />} />
           </Routes>
-          <button>Logout</button>
+          <button onClick={logout}>Logout</button>
         </StytchProvider>
       </BrowserRouter>
       <GlobalStyles />
