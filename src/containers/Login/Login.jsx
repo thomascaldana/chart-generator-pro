@@ -11,11 +11,17 @@ const Login = () => {
 
   const stytchClient = useStytch();
 
-  const resetPasswordByEmail = () => {
+  const resetPasswordByEmail = useCallback(() => {
     stytchClient.passwords.resetByEmailStart({
-      email: "caldana3d@gmail.com"
+      email: "pedro@pedrotech.co",
     });
-    console.log('ok')
+  }, [stytchClient]);
+
+  const showMessage = () => {
+    console.log('show message function runned');
+    stytchClient.passwords.resetByEmailStart({
+      email: email,
+    });
   }
 
 
@@ -45,7 +51,8 @@ const Login = () => {
 
       <div>
         <p> Forgot your password? </p>
-        <button onClick={resetPasswordByEmail}> <Link id='sign-up' to="/resetpassword" className='link-routes'>Reset password</Link></button>
+        <button onClick={showMessage}> Reset password</button>
+        {/*   <Link id='sign-up' to="/resetpassword" className='link-routes'>Reset password Link</Link> */}
 
       </div>
       {/* <Footer /> */}
