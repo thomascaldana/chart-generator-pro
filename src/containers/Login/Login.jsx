@@ -1,59 +1,41 @@
-import { useState } from "react";
-import { useStytch } from "@stytch/react";
-import { Container } from './Styles.js'
+import { useEffect, useState } from "react";
+import { useForm, Controller } from "react-hook-form";
+import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirtTitle, ContainerItems } from './styles'
 
 
+const ChartInfo = () => {
+  const { register, handleSubmit, control } = useForm();
 
-
-const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const stytchClient = useStytch();
-
-
-  const resetPasswordByEmail = () => {
-    console.log('show message function runned');
-    stytchClient.passwords.resetByEmailStart({
-      email: email,
-    });
-  }
-
-
-  const login = () => {
-    stytchClient.passwords.authenticate({
-      email,
-      password,
-      session_duration_minutes: 60,
-    });
-  };
 
   return (
-    <Container>
-      <h1>LOGIN</h1>
+    <ContainerForm>
+      <FirtTitle>LOG IN</FirtTitle>
+      <ContainerItems>
+        <form onSubmit={handleSubmit((formData) => setData(formData))} className="form-container">
 
-      <input
-        placeholder="Email..."
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        placeholder="Password..."
-        onChange={e => setPassword(e.target.value)}
+          <ContainerFirstInputs>
 
-      />
+            <div className="input-pair">
+              <label htmlFor="chartTitle" className="labels">E-mail</label>
+              <Input type="email" {...register("chartTitle")} placeholder="Chart Title" required className="input-no-margin" />
+            </div>
 
-      <button onClick={login}> Login</button>
+            <div className="input-pair">
+              <label htmlFor="dataUnit" className="labels">Password</label>
+              <Input type="password" {...register("dataUnit")} placeholder="Data Unit" required className="input-no-margin" />
+            </div>
 
-      <div>
-        <p> Forgot your password? </p>
-        <button onClick={resetPasswordByEmail}> Reset password</button>
-        {/*   <Link id='sign-up' to="/resetpassword" className='link-routes'>Reset password Link</Link> */}
+          </ContainerFirstInputs>
 
-      </div>
-      {/* <Footer /> */}
 
-    </Container>
+          <SubmitInput type="submit" value="Log in" />
+        </form>
+
+
+      </ContainerItems>
+
+    </ContainerForm>
   );
 };
 
-export default Login
+export default ChartInfo;

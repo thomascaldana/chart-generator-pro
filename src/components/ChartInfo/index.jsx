@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-select";
 import QuickChart from 'quickchart-js';
 import { useForm, Controller } from "react-hook-form";
 import { ContainerForm, Input, SubmitInput, ImageContainer, ChartImg, FiDownloadStyled, AddButton, DeleteButton, DownloadButton, InfoInputs, SelectItemStyles, ContainerFirstInputs, FirtTitle, SecondTitle, ContainerItems } from './styles'
-import { FcPieChart, FcDoughnutChart, FcBarChart, FcLineChart } from "react-icons/fc";;
+import { FcPieChart, FcDoughnutChart, FcBarChart, FcLineChart } from "react-icons/fc";
 
 const chartTypes = [
   { value: "pie", label: "Pie", icon: <FcPieChart /> },
