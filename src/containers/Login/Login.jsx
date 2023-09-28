@@ -37,11 +37,11 @@ const Login = () => {
       });
       // Redirect to the "MyCharts" route
       notify()
+
       setTimeout(() => {
         navigate('/mycharts');
+      }, 2000);
 
-      }, 2500
-      )
 
     } catch (error) {
       // Handle authentication error
