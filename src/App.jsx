@@ -9,6 +9,7 @@ import SignUp from './containers/SignUp/SignUp'
 import ResetPassword from "./containers/ResetPassword/ResetPassword"
 import { StytchHeadlessClient } from '@stytch/vanilla-js/headless'
 import { StytchProvider } from "@stytch/react"
+import MyCharts from "./containers/MyCharts"
 
 
 function App () {
@@ -30,6 +31,7 @@ function App () {
           <Routes>
             <Route path="/" element={<ChartGenerator />} />
             <Route path="/ChartExamples" element={<ChartExamples />} />
+            <Route path="/mycharts" element={<MyCharts />} />
             <Route path="/auth" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/resetpassword/*" element={<ResetPassword />} />

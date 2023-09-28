@@ -34,6 +34,7 @@ export const Header = () => {
         <Ul className='nav-links' >
           <li className='li-item'><Link to="/" className='link-routes'>ChartGenerator</Link></li>
           <li className='li-item'><Link to="/ChartExamples" className='link-routes'>Chart Examples</Link></li>
+          <li className='li-item'><Link to="/mycharts" className='link-routes'>My Charts</Link></li>
         </Ul>
         <Ul className='nav-links' >
           <li className='li-item'><Link to="/auth" className='link-routes'>Login</Link></li>
