@@ -1,18 +1,14 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirtTitle, ContainerItems } from './styles'
+import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirtTitle, ContainerItems } from './styles';
 import { useStytch } from "@stytch/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
-
 const Login = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { register, handleSubmit, trigger, formState: { errors } } = useForm({ mode: 'onChange' });
   const stytchClient = useStytch();
 
   const resetPasswordByEmail = () => {
@@ -20,26 +16,23 @@ const Login = () => {
 
     try {
       stytchClient.passwords.resetByEmail({
-        email: email,
+        email: email, // Assuming you have an email state variable
       });
-      notifyResetPassword(`If your e-mail is registered, we sent a recovery e-mail to change the password to "${email}"`)
+      notifyResetPassword(`If your e-mail is registered, we sent a recovery e-mail to change the password to "${email}"`);
     } catch (error) {
       notifyError('Error');
     }
-  }
+  };
 
-  const login = async () => {
+  const onSubmit = async ({ email, dataUnit }) => {
     try {
-      setIsLoading(true);
       showLoadingToast();
 
-
       await stytchClient.passwords.authenticate({
-        email,
-        password,
+        email: email,
+        password: dataUnit,
         session_duration_minutes: 60,
       });
-
 
       hideLoadingToast();
       notifySuccess('Welcome');
@@ -47,12 +40,8 @@ const Login = () => {
       setTimeout(() => {
         navigate('/mycharts');
       }, 2000);
-
-
     } catch (error) {
-      setIsLoading(false);
       hideLoadingToast();
-
 
       notifyError('Invalid email or password. Please try again.');
       console.error('Authentication failed:', error);
@@ -82,20 +71,9 @@ const Login = () => {
     theme: "colored",
   });
 
-  const notifyResetPassword = (message) => toast.warning(message, {
-    position: "top-center",
-    autoClose: 2000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "colored",
-  });
-
   const notifyError = (message) => toast.error(message, {
     position: "top-center",
-    autoClose: 2000, // Close error toast after 2 seconds
+    autoClose: 2000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -108,26 +86,42 @@ const Login = () => {
     <ContainerForm>
       <FirtTitle>LOG IN</FirtTitle>
       <ContainerItems>
-        <form onSubmit={handleSubmit((formData) => setData(formData))} className="form-container">
+        <form onSubmit={handleSubmit(onSubmit)} className="form-container">
           <ContainerFirstInputs>
             <div className="input-pair">
-              <label htmlFor="chartTitle" className="labels">E-mail</label>
-              <Input type="email" {...register("chartTitle")} placeholder="E-mail" required className="input-no-margin"
-                onChange={e => setEmail(e.target.value)}
+              <label htmlFor="email" className="labels">E-mail</label>
+              <Input
+                type="email"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Invalid email address"
+                  }
+                })}
+                placeholder="E-mail"
+                required
+                className={`input-no-margin ${errors.email ? 'input-error' : ''}`}
+                onBlur={() => trigger("email")}
               />
+              {errors.email && <span className="error-message">{errors.email.message}</span>}
             </div>
             <div className="input-pair">
               <label htmlFor="dataUnit" className="labels">Password</label>
-              <Input type="password" {...register("dataUnit")} placeholder="Password" required className="input-no-margin"
-                onChange={e => setPassword(e.target.value)} />
+              <Input
+                type="password"
+                {...register("dataUnit", { required: "Password is required" })}
+                placeholder="Password"
+                required
+                className={`input-no-margin ${errors.dataUnit ? 'input-error' : ''}`}
+                onBlur={() => trigger("dataUnit")}
+              />
+              {errors.dataUnit && <span className="error-message">{errors.dataUnit.message}</span>}
             </div>
           </ContainerFirstInputs>
           <SubmitInput
             type="submit"
             value="Log in"
-            onClick={login}
-            disabled={isLoading}
-            className={isLoading ? 'loading-button' : ''}
           />
         </form>
         <div>

@@ -42,7 +42,7 @@ export const Input = styled.input`
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   box-sizing: border-box;
-  width: 14rem;
+  width: 18rem;
   border-radius: 4px;
   border: 1px solid black;
   padding: 10px 15px;
@@ -223,15 +223,18 @@ export const ContainerFirstInputs = styled.div`
     .input-no-margin{
       margin: 0;
     }
+
+
+    .error-message{
+      color: red;
+    }
   }
 
 
 
   @media screen and (min-width: 500px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 5rem;
-
-    gap: 1rem;
   }
 `
 
