@@ -11,26 +11,28 @@ const Login = () => {
   const { register, handleSubmit, trigger, formState: { errors } } = useForm({ mode: 'onChange' });
   const stytchClient = useStytch();
 
+  const [emailRecovery, setEmailRecovery] = useState()
+
   const resetPasswordByEmail = () => {
-    alert('Check your e-mail address');
 
     try {
       stytchClient.passwords.resetByEmail({
-        email: email, // Assuming you have an email state variable
+        email: emailRecovery,
       });
-      notifyResetPassword(`If your e-mail is registered, we sent a recovery e-mail to change the password to "${email}"`);
+      notifyResetPassword(`If your e-mail is registered, we sent a recovery e-mail to change the password to "${emailRecovery}"`);
     } catch (error) {
-      notifyError('Error');
+      console.error(error)
+      //notifyError('errosss');
     }
   };
 
-  const onSubmit = async ({ email, dataUnit }) => {
+  const onSubmit = async ({ email, password }) => {
     try {
       showLoadingToast();
 
       await stytchClient.passwords.authenticate({
         email: email,
-        password: dataUnit,
+        password: password,
         session_duration_minutes: 60,
       });
 
@@ -61,6 +63,17 @@ const Login = () => {
   const hideLoadingToast = () => toast.dismiss();
 
   const notifySuccess = (message) => toast.success(message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  const notifyResetPassword = (message) => toast.warning(message, {
     position: "top-center",
     autoClose: 2000,
     hideProgressBar: false,
@@ -103,20 +116,24 @@ const Login = () => {
                 required
                 className={`input-no-margin ${errors.email ? 'input-error' : ''}`}
                 onBlur={() => trigger("email")}
+                onChange={(event) => {
+                  setEmailRecovery(event.target.value);
+                  console.log(event.target.value)
+                }}
               />
               {errors.email && <span className="error-message">{errors.email.message}</span>}
             </div>
             <div className="input-pair">
-              <label htmlFor="dataUnit" className="labels">Password</label>
+              <label htmlFor="password" className="labels">Password</label>
               <Input
                 type="password"
-                {...register("dataUnit", { required: "Password is required" })}
+                {...register("password", { required: "Password is required" })}
                 placeholder="Password"
                 required
-                className={`input-no-margin ${errors.dataUnit ? 'input-error' : ''}`}
-                onBlur={() => trigger("dataUnit")}
+                className={`input-no-margin ${errors.password ? 'input-error' : ''}`}
+                onBlur={() => trigger("password")}
               />
-              {errors.dataUnit && <span className="error-message">{errors.dataUnit.message}</span>}
+              {errors.password && <span className="error-message">{errors.password.message}</span>}
             </div>
           </ContainerFirstInputs>
           <SubmitInput
