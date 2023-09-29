@@ -57,7 +57,6 @@ export const SubmitInput = styled.input`
   font-weight: 600;
   margin-top: 2rem;
   padding: 10px 20px 10px;
-  padding: 20px;
   font-size: 24px;
   appearance: none;
   border-radius: 4px;

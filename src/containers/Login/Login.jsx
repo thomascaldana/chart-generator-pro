@@ -22,7 +22,7 @@ const Login = () => {
       notifyResetPassword(`If your e-mail is registered, we sent a recovery e-mail to change the password to "${emailRecovery}"`);
     } catch (error) {
       console.error(error)
-      //notifyError('errosss');
+      notifyError('errosss');
     }
   };
 
@@ -75,7 +75,7 @@ const Login = () => {
 
   const notifyResetPassword = (message) => toast.warning(message, {
     position: "top-center",
-    autoClose: 2000,
+    autoClose: 6000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -105,8 +105,8 @@ const Login = () => {
               <label htmlFor="email" className="labels">E-mail</label>
               <Input
                 type="email"
-                {...register("email", {
-                  required: "Email is required",
+                {...register("emailInput", {
+
                   pattern: {
                     value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                     message: "Invalid email address"
@@ -114,14 +114,14 @@ const Login = () => {
                 })}
                 placeholder="E-mail"
                 required
-                className={`input-no-margin ${errors.email ? 'input-error' : ''}`}
-                onBlur={() => trigger("email")}
+                className={`input-no-margin ${errors.emailInput ? 'input-error' : ''}`}
+                onBlur={() => trigger("emailInput")}
                 onChange={(event) => {
                   setEmailRecovery(event.target.value);
                   console.log(event.target.value)
                 }}
               />
-              {errors.email && <span className="error-message">{errors.email.message}</span>}
+              {errors.emailInput && <span className="error-message">{errors.emailInput.message}</span>}
             </div>
             <div className="input-pair">
               <label htmlFor="password" className="labels">Password</label>
