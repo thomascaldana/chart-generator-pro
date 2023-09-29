@@ -17,9 +17,15 @@ const Login = () => {
 
   const resetPasswordByEmail = () => {
     alert('Check your e-mail address');
-    stytchClient.passwords.resetByEmail({
-      email: email,
-    });
+
+    try {
+      stytchClient.passwords.resetByEmail({
+        email: email,
+      });
+      notifyResetPassword(`If your e-mail is registered, we sent a recovery e-mail to change the password to "${email}"`)
+    } catch (error) {
+      notifyError('Error');
+    }
   }
 
   const login = async () => {
@@ -42,12 +48,13 @@ const Login = () => {
         navigate('/mycharts');
       }, 2000);
 
+
     } catch (error) {
       setIsLoading(false);
       hideLoadingToast();
 
 
-      notifyError('Authentication failed');
+      notifyError('Invalid email or password. Please try again.');
       console.error('Authentication failed:', error);
     }
   };
@@ -65,6 +72,17 @@ const Login = () => {
   const hideLoadingToast = () => toast.dismiss();
 
   const notifySuccess = (message) => toast.success(message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  const notifyResetPassword = (message) => toast.warning(message, {
     position: "top-center",
     autoClose: 2000,
     hideProgressBar: false,
