@@ -13,21 +13,25 @@ const Login = () => {
 
   const [emailRecovery, setEmailRecovery] = useState()
 
-  const showMessage = () => {
+  const resetPassword = () => {
     console.log('show message function runned');
 
+    try {
 
-    stytchClient.passwords.resetByEmailStart({
-      email: emailRecovery,
-    });
+      stytchClient.passwords.resetByEmailStart({
+        email: emailRecovery,
+      });
+
+      notifyResetPassword(`We sent and e-mail to recovery your password to ${emailRecovery}`)
+    } catch (error) {
+      notifyError('Something was wrong with reset password');
+    }
   }
 
   const onSubmit = async ({ email, password }) => {
     try {
       showLoadingToast();
 
-      // console.log(emailRecovery);
-      // console.log(typeof emailRecovery);
       await stytchClient.passwords.authenticate({
         email: emailRecovery,
         password: password,
@@ -71,7 +75,7 @@ const Login = () => {
     theme: "colored",
   });
 
-  const notifyResetPassword = (message) => toast.warning(message, {
+  const notifyResetPassword = (message) => toast.success(message, {
     position: "top-center",
     autoClose: 6000,
     hideProgressBar: false,
@@ -141,7 +145,7 @@ const Login = () => {
         </form>
         <div>
           <p> Forgot your password? </p>
-          <button onClick={showMessage}> Reset password</button>
+          <button onClick={resetPassword}> Reset password</button>
           <ToastContainer />
         </div>
       </ContainerItems>
