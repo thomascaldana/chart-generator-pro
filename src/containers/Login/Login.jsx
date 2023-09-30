@@ -13,25 +13,19 @@ const Login = () => {
 
   const [emailRecovery, setEmailRecovery] = useState()
 
-  const resetPasswordByEmail = () => {
-
-    try {
-      stytchClient.passwords.resetByEmail({
-        email: emailRecovery,
-      });
-      notifyResetPassword(`If your e-mail is registered, we sent a recovery e-mail to change the password to "${emailRecovery}"`);
-    } catch (error) {
-      console.error(error)
-      notifyError('errosss');
-    }
-  };
+  const showMessage = () => {
+    console.log('show message function runned');
+    stytchClient.passwords.resetByEmailStart({
+      email: emailRecovery,
+    });
+  }
 
   const onSubmit = async ({ email, password }) => {
     try {
       showLoadingToast();
 
       await stytchClient.passwords.authenticate({
-        email: email,
+        email: 'thomascaldana@gmail.com',
         password: password,
         session_duration_minutes: 60,
       });
@@ -143,7 +137,7 @@ const Login = () => {
         </form>
         <div>
           <p> Forgot your password? </p>
-          <button onClick={resetPasswordByEmail}> Reset password</button>
+          <button onClick={showMessage}> Reset password</button>
           <ToastContainer />
         </div>
       </ContainerItems>
