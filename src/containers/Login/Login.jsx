@@ -15,6 +15,8 @@ const Login = () => {
 
   const showMessage = () => {
     console.log('show message function runned');
+
+
     stytchClient.passwords.resetByEmailStart({
       email: emailRecovery,
     });
@@ -24,8 +26,10 @@ const Login = () => {
     try {
       showLoadingToast();
 
+      // console.log(emailRecovery);
+      // console.log(typeof emailRecovery);
       await stytchClient.passwords.authenticate({
-        email: 'thomascaldana@gmail.com',
+        email: emailRecovery,
         password: password,
         session_duration_minutes: 60,
       });
