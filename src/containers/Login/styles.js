@@ -29,11 +29,6 @@ export const ContainerItems = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media screen and (min-width: 1300px){
-    flex-flow: row nowrap;
-    gap: 2rem;
-  }
-
 `
 
 export const Input = styled.input`
@@ -65,6 +60,8 @@ export const SubmitInput = styled.input`
   font-weight: 400;
   transition: 0.3s all;
   cursor: pointer;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); 
+
 
   &:hover {
     background-color: #0056b3;
@@ -161,7 +158,7 @@ export const DownloadButton = styled.button`
 
   &:hover {
     background-color: #f1f1f1;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow on hover */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); 
   }
 `
 
@@ -259,4 +256,33 @@ text-align: center;
     font-size: 1.05rem;
     margin-bottom: 1.5rem;
   }
+`
+
+export const ForgotPasswordContainer = styled.div`
+  margin-top: 0.7rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.7rem;
+
+`
+export const ForgotPasswordButton = styled.button`
+  font-size: 1rem;
+  text-align: center;
+  background-color: #7bff ;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); 
+  
+
+
+  &:hover {
+    background-color:  #007bff;
+    cursor: pointer;
+  }
+
+
 `

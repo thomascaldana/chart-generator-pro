@@ -38,7 +38,7 @@ export const Header = () => {
         </Ul>
         <Ul className='nav-links' >
           <li className='li-item'><Link to="/auth" className='link-routes'>Login</Link></li>
-          <li className='li-item'><Link id='sign-up' to="/signup" className='link-routes'>Sign up</Link></li>
+          <li className='li-item'><Link to="/signup" className='link-routes sign-up'>Sign up</Link></li>
         </Ul>
 
         <div className='burger-menu' onClick={updateMenu}>
@@ -49,9 +49,15 @@ export const Header = () => {
       </Nav >
 
       <MenuOptions className={menu_class} isVisible={isMenuClicked}>
-        <ul className='menu-options' >
+        <ul className='menu-options'  >
           <li className='li-item'><Link to="/" className='link-routes'>ChartGenerator</Link></li>
           <li className='li-item'><Link to="/ChartExamples" className='link-routes'>Chart Examples</Link></li>
+          <li className='li-item'><Link to="/mycharts" className='link-routes'>My Charts</Link></li>
+        </ul>
+
+        <ul className='menu-options auth'  >
+          <li className='li-item'><Link to="/auth" className='link-routes sign-up bold'>Login</Link></li>
+          <li className='li-item'><Link to="/signup" className='link-routes sign-up bold '>Sign up</Link></li>
         </ul>
       </MenuOptions>
     </Container >

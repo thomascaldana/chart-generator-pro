@@ -15,6 +15,7 @@ export const Container = styled.header`
   top: 0;
   z-index: 1;
   background: #e6e6e6;
+  opacity: 0.96;
   box-shadow: 0px 2px 10px 0px rgba(0,0,0,.75);
   border-bottom: 2px solid  #6600ff;
   padding: 0 1rem;
@@ -22,7 +23,7 @@ export const Container = styled.header`
 
   .menu {
   width: 100%;
-  height: 7rem;
+  height: 16rem;
   background-color: #e6e6e6;
   top: 0;
   z-index: -1;
@@ -37,8 +38,9 @@ export const Container = styled.header`
   align-content: center;
   gap: 20px;
   font-size: 1.1rem;
-  font-family: sans-serif;  
-
+  font-family: sans-serif; 
+  
+ 
   .li-item{
   list-style-type: none;
   cursor: pointer;
@@ -49,12 +51,23 @@ export const Container = styled.header`
   }
 }
 }
+
+
+.auth {
+   
+
+
+    .bold{
+      text-decoration: underline !important;
+      font-weight: 700;
+}
+  }
 `
 
 export const LogoImg = styled.img`
   width: 9rem;
 
-  @media screen and (min-width: 550px) {
+  @media screen and (min-width: 950px) {
    width: 10rem;
 }
 
@@ -76,7 +89,7 @@ export const Nav = styled.nav`
   justify-content: space-between;
   cursor: pointer;
 
-  @media screen and (min-width: 550px) {
+  @media screen and (min-width: 950px) {
    display: none;
 }
 
@@ -123,7 +136,7 @@ ${({ isVisible }) => css`
 
   animation: ${({ isVisible }) => (isVisible ? css`${slideDownAnimation} 0.5s ease` : 'none')}; 
   
-  @media screen and (min-width: 550px) {
+  @media screen and (min-width: 950px) {
    display: none;
   }
   `
@@ -148,22 +161,29 @@ export const Ul = styled.ul`
   .link-routes{
   text-decoration: none;
   color: #000;
-
 }
 
-#sign-up{
+
+
+.sign-up{
   color: #fff;
   background: #5340ff;
   border-radius: 5px;
   padding: 10px;
 }
 
+
+
 &:hover{
       border-bottom: 2px solid lightgray;
     }
   }
   
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 950px) {
    display: none;
+}
+
+.bold{
+  color: #5340ff !important;
 }
   `

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirtTitle, ContainerItems } from './styles';
+import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirtTitle, ContainerItems, ForgotPasswordContainer, ForgotPasswordButton } from './styles';
 import { useStytch } from "@stytch/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -143,11 +143,11 @@ const Login = () => {
             value="Log in"
           />
         </form>
-        <div>
+        <ForgotPasswordContainer>
           <p> Forgot your password? </p>
-          <button onClick={resetPassword}> Reset password</button>
+          <ForgotPasswordButton onClick={resetPassword}> Reset password</ForgotPasswordButton>
           <ToastContainer />
-        </div>
+        </ForgotPasswordContainer>
       </ContainerItems>
     </ContainerForm>
   );
