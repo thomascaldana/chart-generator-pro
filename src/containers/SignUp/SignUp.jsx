@@ -1,29 +1,32 @@
 import { useState } from "react";
-// import { useStytch } from "@stytch/react";
 import { Container } from './Styles.js'
 import { useStytch } from '@stytch/react'
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(""); // State variable to store the message
 
-  const stytchClient = useStytch()
+  const stytchClient = useStytch();
 
-  const signUp = () => {
-    stytchClient.passwords.strengthCheck({ email, password })
-      .then((res) => {
-        console.log("Success", res);
-      })
-      .catch((err) => console.log("Error: ", err));
+  const signUp = async () => {
+    try {
+      const strengthCheckResponse = await stytchClient.passwords.strengthCheck({ email, password });
+      console.log("Strength Check Success", strengthCheckResponse);
 
-    stytchClient.passwords.create({
-      email,
-      password,
-      session_duration_minutes: 60
-    })
-  }
+      // Create user account
+      const createResponse = await stytchClient.passwords.create({
+        email,
+        password,
+        session_duration_minutes: 60
+      });
+      console.log("User Created", createResponse);
 
-
+      setMessage("Account created successfully!");
+    } catch (error) {
+      setMessage(error.message || "An error occurred while signing up.");
+    }
+  };
 
   return (
     <Container>
@@ -31,18 +34,21 @@ const SignUp = () => {
 
       <input
         placeholder="Email..."
+        value={email}
         onChange={e => setEmail(e.target.value)}
-
       />
       <input
         placeholder="Password..."
+        value={password}
         onChange={e => setPassword(e.target.value)}
-
       />
 
-      <button onClick={signUp} > Sign Up</button>
+      <button onClick={signUp}>Sign Up</button>
+
+
+      {message && <p>{message}</p>}
     </Container>
   );
 };
 
-export default SignUp
+export default SignUp;
