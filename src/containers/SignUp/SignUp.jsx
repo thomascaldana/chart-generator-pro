@@ -24,7 +24,8 @@ const SignUp = () => {
 
       setMessage("Account created successfully!");
     } catch (error) {
-      setMessage(error.message || "An error occurred while signing up.");
+      setMessage(error.error_message || "An error occurred while signing up.");
+      //console.error(JSON.stringify(error, null, 2));
     }
   };
 
