@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirtTitle, ContainerItems, ForgotPasswordContainer, ForgotPasswordButton } from './styles';
+import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirstTitle, ContainerItems, ForgotPasswordContainer, ForgotPasswordButton } from './styles';
 import { useStytch } from "@stytch/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -99,7 +99,7 @@ const Login = () => {
 
   return (
     <ContainerForm>
-      <FirtTitle>LOG IN</FirtTitle>
+      <FirstTitle>LOG IN</FirstTitle>
       <ContainerItems>
         <form onSubmit={handleSubmit(onSubmit)} className="form-container">
           <ContainerFirstInputs>
@@ -114,13 +114,12 @@ const Login = () => {
                     message: "Invalid email address"
                   }
                 })}
-                placeholder="E-mail"
+                placeholder="Email..."
                 required
                 className={`input-no-margin ${errors.emailInput ? 'input-error' : ''}`}
                 onBlur={() => trigger("emailInput")}
                 onChange={(event) => {
                   setEmailRecovery(event.target.value);
-                  console.log(event.target.value)
                 }}
               />
               {errors.emailInput && <span className="error-message">{errors.emailInput.message}</span>}
@@ -130,7 +129,7 @@ const Login = () => {
               <Input
                 type="password"
                 {...register("password", { required: "Password is required" })}
-                placeholder="Password"
+                placeholder="Password..."
                 required
                 className={`input-no-margin ${errors.password ? 'input-error' : ''}`}
                 onBlur={() => trigger("password")}

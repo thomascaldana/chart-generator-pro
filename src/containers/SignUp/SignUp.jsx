@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container } from './Styles.js'
+import { ContainerForm, FirstTitle, ContainerItems, Input, SubmitInput, Message } from './Styles.js'
 import { useStytch } from '@stytch/react'
 
 const SignUp = () => {
@@ -9,8 +9,12 @@ const SignUp = () => {
 
   const stytchClient = useStytch();
 
+  const logout = () => {
+    stytchClient.session.revoke();
+  }
   const signUp = async () => {
     try {
+      logout()
       const strengthCheckResponse = await stytchClient.passwords.strengthCheck({ email, password });
       console.log("Strength Check Success", strengthCheckResponse);
 
@@ -24,31 +28,40 @@ const SignUp = () => {
 
       setMessage("Account created successfully!");
     } catch (error) {
+
       setMessage(error.error_message || "An error occurred while signing up.");
-      //console.error(JSON.stringify(error, null, 2));
+
+      console.error(JSON.stringify(error, null, 2));
     }
   };
 
   return (
-    <Container>
-      <h1>SIGN UP</h1>
+    <ContainerForm>
+      <FirstTitle>SIGN UP</FirstTitle>
+      <ContainerItems>
+        <div className="input-pair">
+          <label htmlFor="email" className="labels">E-mail</label>
+          <Input
+            placeholder="Email..."
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
 
-      <input
-        placeholder="Email..."
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <input
-        placeholder="Password..."
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
+        <div className="input-pair">
+          <label htmlFor="password" className="labels">Password</label>
+          <Input
+            placeholder="Password..."
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
+        {message && <Message>{message}</Message>}
 
-      <button onClick={signUp}>Sign Up</button>
+        <SubmitInput onClick={signUp} >Sign Up</SubmitInput>
+      </ContainerItems>
 
-
-      {message && <p>{message}</p>}
-    </Container>
+    </ContainerForm >
   );
 };
 

@@ -234,7 +234,7 @@ export const ContainerFirstInputs = styled.div`
   }
 `
 
-export const FirtTitle = styled.h1`
+export const FirstTitle = styled.h1`
   font-size: 1.6rem;
   font-family: 'Preahvihear',sans-serif;
   text-align: center;
