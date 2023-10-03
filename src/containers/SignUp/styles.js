@@ -70,6 +70,10 @@ export const ContainerItems = styled.div`
     justify-content: center;
     margin: 0.8rem 0;
   }
+
+  .message-box{
+    max-width: 18rem;
+  }
 `
 export const Message = styled.p`
   

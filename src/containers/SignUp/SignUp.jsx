@@ -56,7 +56,10 @@ const SignUp = () => {
             onChange={e => setPassword(e.target.value)}
           />
         </div>
-        {message && <Message>{message}</Message>}
+        <div className="message-box">
+          {message && <Message>{message}</Message>}
+
+        </div>
 
         <SubmitInput onClick={signUp} >Sign Up</SubmitInput>
       </ContainerItems>
