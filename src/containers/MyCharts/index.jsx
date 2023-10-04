@@ -1,4 +1,5 @@
 import { Container, ContainerItems, FirstTitle } from './styles'
+import LogoutButton from "../../components/Logout/index.jsx";
 
 
 const MyCharts = () => {
@@ -9,6 +10,8 @@ const MyCharts = () => {
       <ContainerItems>
         <h1>MY CHARTS</h1>
       </ContainerItems>
+      <LogoutButton>Logout</LogoutButton>
+
 
     </Container>
   );

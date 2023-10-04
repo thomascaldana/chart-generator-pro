@@ -5,25 +5,12 @@ import { useStytch } from "@stytch/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate, Link } from 'react-router-dom';
-import LogoutButton from "../../components/Logout";
+
+import LogoutButton from "../../components/Logout/index.jsx";
+
 
 
 const Login = () => {
-
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const userData = localStorage.getItem("stytch_sdk_state_public-token-test-3f407f39-b779-440c-a64c-18d260212048");
-    setIsLoggedIn(userData !== null && userData !== "null");
-  }, []);
-
-  const handleLogout = () => {
-
-    localStorage.removeItem("stytch_sdk_state_public-token-test-3f407f39-b779-440c-a64c-18d260212048");
-    setIsLoggedIn(false);
-  };
-
 
 
 
@@ -168,7 +155,7 @@ const Login = () => {
           <ToastContainer />
         </ForgotPasswordContainer>
         <SignUpLink>New here? <Link to='/signup'>Sign Up</Link> </SignUpLink>
-        {isLoggedIn && <LogoutButton onLogout={handleLogout} />}
+        <LogoutButton>Logout</LogoutButton>
       </ContainerItems>
     </ContainerForm>
   );

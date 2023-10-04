@@ -4,8 +4,15 @@ import { useStytch } from '@stytch/react'
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';
 
+import LogoutButton from "../../components/Logout/index.jsx";
+
 
 const SignUp = () => {
+
+
+
+
+
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
@@ -87,6 +94,7 @@ const SignUp = () => {
         <SubmitInput onClick={signUp} >Sign Up</SubmitInput>
       </ContainerItems>
       <SignInLink>Already have an account? <Link to='/auth'>Log In</Link> </SignInLink>
+      <LogoutButton>Logout</LogoutButton>
       <ToastContainer />
 
 
