@@ -81,3 +81,20 @@ export const Message = styled.p`
 
 `
 
+export const SignInLink = styled.p`
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 16px;
+color: #000;
+align-self: center;
+margin-top: 2rem;
+
+
+a {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #000;
+
+}
+`

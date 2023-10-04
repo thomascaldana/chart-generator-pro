@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirstTitle, ContainerItems, ForgotPasswordContainer, ForgotPasswordButton } from './styles';
+import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirstTitle, ContainerItems, ForgotPasswordContainer, ForgotPasswordButton, SignUpLink } from './styles';
 import { useStytch } from "@stytch/react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -147,6 +149,7 @@ const Login = () => {
           <ForgotPasswordButton onClick={resetPassword}> Reset password</ForgotPasswordButton>
           <ToastContainer />
         </ForgotPasswordContainer>
+        <SignUpLink>New here? <Link to='/signup'>Sign Up</Link> </SignUpLink>
       </ContainerItems>
     </ContainerForm>
   );

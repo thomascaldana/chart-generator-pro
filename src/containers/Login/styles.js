@@ -275,7 +275,7 @@ export const ForgotPasswordButton = styled.button`
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   
 
 
@@ -285,4 +285,21 @@ export const ForgotPasswordButton = styled.button`
   }
 
 
+`
+export const SignUpLink = styled.p`
+font-style: normal;
+font-weight: 300;
+font-size: 14px;
+line-height: 16px;
+color: #000;
+align-self: center;
+margin-top: 2rem; 
+
+
+a {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #000;
+
+}
 `

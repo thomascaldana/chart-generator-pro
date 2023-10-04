@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { ContainerForm, FirstTitle, ContainerItems, Input, SubmitInput, Message } from './Styles.js'
+import { ContainerForm, FirstTitle, ContainerItems, Input, SubmitInput, Message, SignInLink } from './Styles.js'
 import { useStytch } from '@stytch/react'
+import { Link } from 'react-router-dom'
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -63,6 +64,7 @@ const SignUp = () => {
 
         <SubmitInput onClick={signUp} >Sign Up</SubmitInput>
       </ContainerItems>
+      <SignInLink>Already have an account? <Link to='/auth'>Log In</Link> </SignInLink>
 
     </ContainerForm >
   );
