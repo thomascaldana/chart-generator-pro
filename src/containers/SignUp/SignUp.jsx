@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { ContainerForm, FirstTitle, ContainerItems, Input, SubmitInput, Message, SignInLink } from './Styles.js'
 import { useStytch } from '@stytch/react'
-import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate, Link } from 'react-router-dom';
+
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(""); // State variable to store the message
+  const [message, setMessage] = useState("");
 
   const stytchClient = useStytch();
 
@@ -28,14 +32,30 @@ const SignUp = () => {
       console.log("User Created", createResponse);
 
       setMessage("Account created successfully!");
+      notifySuccess("Account created successfully!")
+
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
     } catch (error) {
 
       setMessage(error.error_message || "An error occurred while signing up.");
 
-      console.error(JSON.stringify(error, null, 2));
+      //console.error(JSON.stringify(error, null, 2));
     }
   };
 
+
+  const notifySuccess = (message) => toast.success(message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
   return (
     <ContainerForm>
       <FirstTitle>SIGN UP</FirstTitle>
@@ -43,6 +63,7 @@ const SignUp = () => {
         <div className="input-pair">
           <label htmlFor="email" className="labels">E-mail</label>
           <Input
+            type="email"
             placeholder="Email..."
             value={email}
             onChange={e => setEmail(e.target.value)}
@@ -52,6 +73,7 @@ const SignUp = () => {
         <div className="input-pair">
           <label htmlFor="password" className="labels">Password</label>
           <Input
+            type="password"
             placeholder="Password..."
             value={password}
             onChange={e => setPassword(e.target.value)}
@@ -65,6 +87,8 @@ const SignUp = () => {
         <SubmitInput onClick={signUp} >Sign Up</SubmitInput>
       </ContainerItems>
       <SignInLink>Already have an account? <Link to='/auth'>Log In</Link> </SignInLink>
+      <ToastContainer />
+
 
     </ContainerForm >
   );

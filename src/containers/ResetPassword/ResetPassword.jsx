@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { useStytch } from "@stytch/react";
 import { Container } from './Styles.js'
 import { useStytch } from "@stytch/react";
 
@@ -19,6 +18,7 @@ const ResetPassword = () => {
       session_duration_minutes: 60,
     })
   }
+
 
   return (
     <Container>
