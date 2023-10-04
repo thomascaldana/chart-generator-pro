@@ -4,6 +4,7 @@ export const FirstTitle = styled.h1`
 font-family: 'Preahvihear',sans-serif;
   text-align: center;
   font-size: 1.6rem;
+  margin-top: 2.5rem;
 
 `
 

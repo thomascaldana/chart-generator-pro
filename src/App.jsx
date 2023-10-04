@@ -19,9 +19,6 @@ function App () {
 
   // when publishing create a token in GithuB and a Env key to improve secure about the key
 
-  const logout = () => {
-    stytchClient.session.revoke();
-  }
 
   return (
     <div className="App">
@@ -36,7 +33,6 @@ function App () {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/resetpassword/*" element={<ResetPassword />} />
           </Routes>
-          <button onClick={logout}>Logout</button>
         </StytchProvider>
       </BrowserRouter>
       <GlobalStyles />

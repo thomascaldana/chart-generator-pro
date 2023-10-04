@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ContainerForm, Input, SubmitInput, ContainerFirstInputs, FirstTitle, ContainerItems, ForgotPasswordContainer, ForgotPasswordButton, SignUpLink } from './styles';
 import { useStytch } from "@stytch/react";
@@ -35,7 +35,7 @@ const Login = () => {
     }
   }
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit = async ({ password }) => {
     try {
       showLoadingToast();
 
