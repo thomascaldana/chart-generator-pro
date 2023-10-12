@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ContainerForm, FirstTitle, ContainerItems, Input, SubmitInput, Message, SignInLink } from './Styles.js'
+import { ContainerForm, FirstTitle, ContainerItems, Input, SubmitInput, Message, SignInLink } from './styles.js'
 import { useStytch } from '@stytch/react'
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate, Link } from 'react-router-dom';

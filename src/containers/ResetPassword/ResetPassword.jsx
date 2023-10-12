@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Container } from './Styles.js'
+import { Container, Input, FirstTitle, SubmitInput } from './Styles.js'
 import { useStytch } from "@stytch/react";
 
 
 const ResetPassword = () => {
 
   const [newPassword, setNewPassword] = useState();
+  const [message, setMessage] = useState("");
 
   const stytchClient = useStytch()
 
@@ -22,13 +23,18 @@ const ResetPassword = () => {
 
   return (
     <Container>
-      <h1> RESET Password</h1>
-      <input
+      <FirstTitle> RESET PASSWORD</FirstTitle>
+      <Input
         placeholder="New Password..."
         onChange={(e) => setNewPassword(e.target.value)}
       />
 
-      <button onClick={resetPassword}> Reset Password</button>
+      <div className="message-box">
+        {message && <Message>{message}</Message>}
+
+      </div>
+
+      <SubmitInput onClick={resetPassword}> Reset Password</SubmitInput>
     </Container>
   );
 };
