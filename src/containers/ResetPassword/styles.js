@@ -57,3 +57,9 @@ export const SubmitInput = styled.button`
     background-color: #0056b3;
   }
 `
+
+export const Message = styled.p`
+  
+  font-weight: 500;
+
+`
