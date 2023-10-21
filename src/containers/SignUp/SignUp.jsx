@@ -27,6 +27,7 @@ const SignUp = () => {
   const signUp = async () => {
     try {
       logout()
+      showLoadingToast();
       const strengthCheckResponse = await stytchClient.passwords.strengthCheck({ email, password });
       console.log("Strength Check Success", strengthCheckResponse);
 
@@ -39,13 +40,15 @@ const SignUp = () => {
       console.log("User Created", createResponse);
 
       setMessage("Account created successfully!");
+      hideLoadingToast();
       notifySuccess("Account created successfully!")
 
       setTimeout(() => {
         navigate('/');
       }, 2000);
     } catch (error) {
-
+      hideLoadingToast();
+      notifyError(error.error_message);
       setMessage(error.error_message || "An error occurred while signing up.");
 
       //console.error(JSON.stringify(error, null, 2));
@@ -63,6 +66,31 @@ const SignUp = () => {
     progress: undefined,
     theme: "colored",
   });
+
+
+  const showLoadingToast = () => toast.info('Checking your email & password...', {
+    position: "top-center",
+    autoClose: false,
+    hideProgressBar: true,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: false,
+    theme: "colored",
+  });
+
+
+  const notifyError = (message) => toast.error(message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+  const hideLoadingToast = () => toast.dismiss();
   return (
     <ContainerForm>
       <FirstTitle>SIGN UP</FirstTitle>
@@ -73,6 +101,7 @@ const SignUp = () => {
             type="email"
             placeholder="Email..."
             value={email}
+            required
             onChange={e => setEmail(e.target.value)}
           />
         </div>
@@ -87,7 +116,7 @@ const SignUp = () => {
           />
         </div>
         <div className="message-box">
-          {message && <Message>{message}</Message>}
+          {message && <Message style={{ color: 'red' }}>{message}</Message>}
 
         </div>
 
