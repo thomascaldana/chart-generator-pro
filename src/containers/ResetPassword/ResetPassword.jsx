@@ -33,10 +33,9 @@ const ResetPassword = () => {
 
       if (response.status === 'failure') {
         hideLoadingToast();
-        notifyError('Try a harder password'); // Show an error message based on the response
+        notifyError('Try a harder password');
         setMessage(response.error_message || "Try a harder password");
       } else {
-        // Password changed successfully
         setMessage("Password changed successfully!");
         hideLoadingToast();
         notifySuccess('Success! New password created! Welcome!');
@@ -96,11 +95,11 @@ const ResetPassword = () => {
       />
 
       <div className="message-box">
-        {message && <Message>{message}</Message>}
+        {message && <Message style={{ color: 'red' }}>{message}</Message>}
 
       </div>
 
-      <SubmitInput onClick={resetPassword}> Reset Password</SubmitInput>
+      <SubmitInput onClick={resetPassword} > Reset Password</SubmitInput>
       <ToastContainer />
     </Container>
   );
