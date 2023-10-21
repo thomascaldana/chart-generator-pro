@@ -20,11 +20,20 @@ const Login = () => {
 
   const [emailRecovery, setEmailRecovery] = useState()
 
+  function isValidEmail (email) {
+    // Regular expression for basic email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  }
+
   const resetPassword = () => {
-    console.log('show message function runned');
 
+    // Check if the emailRecovery is a valid email address
+    if (!isValidEmail(emailRecovery)) {
+      notifyError('Type your e-mail before clicking in the Reset Password button');
+      return; // Stop further execution
+    }
     try {
-
       stytchClient.passwords.resetByEmailStart({
         email: emailRecovery,
       });

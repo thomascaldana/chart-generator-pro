@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Container, Input, FirstTitle, SubmitInput, Message } from './Styles.js'
 import { useStytch } from "@stytch/react";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -21,28 +22,70 @@ const ResetPassword = () => {
 
     try {
 
-      logout()
+      logout();
+      showLoadingToast();
 
-      const strengthCheckResponse = await stytchClient.passwords.strengthCheck({ newPassword });
-      console.log("Strength Check Success", strengthCheckResponse);
-
-      stytchClient.passwords.resetByEmail({
+      const response = await stytchClient.passwords.resetByEmail({
         token,
         password: newPassword,
         session_duration_minutes: 60,
-      })
+      });
 
-      setMessage("Password changed successfully!");
-
-
+      if (response.status === 'failure') {
+        hideLoadingToast();
+        notifyError('Try a harder password'); // Show an error message based on the response
+        setMessage(response.error_message || "Try a harder password");
+      } else {
+        // Password changed successfully
+        setMessage("Password changed successfully!");
+        hideLoadingToast();
+        notifySuccess('Success! New password created! Welcome!');
+      }
     } catch (error) {
+      hideLoadingToast();
+      notifyError('Try a harder password');
       setMessage(error.error_message || "Try a harder password");
-
     }
 
 
   }
 
+
+  const showLoadingToast = () => toast.info('Checking your email & password...', {
+    position: "top-center",
+    autoClose: false,
+    hideProgressBar: true,
+    closeOnClick: false,
+    pauseOnHover: false,
+    draggable: false,
+    theme: "colored",
+  });
+
+  const hideLoadingToast = () => toast.dismiss();
+
+  const notifySuccess = (message) => toast.success(message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+
+
+
+  const notifyError = (message) => toast.error(message, {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   return (
     <Container>
@@ -58,6 +101,7 @@ const ResetPassword = () => {
       </div>
 
       <SubmitInput onClick={resetPassword}> Reset Password</SubmitInput>
+      <ToastContainer />
     </Container>
   );
 };
