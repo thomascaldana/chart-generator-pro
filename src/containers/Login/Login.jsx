@@ -30,7 +30,7 @@ const Login = () => {
 
     // Check if the emailRecovery is a valid email address
     if (!isValidEmail(emailRecovery)) {
-      notifyError('Type your e-mail before clicking in the Reset Password button');
+      notifyError('Type your email correctly before clicking in the Reset Password button');
       return; // Stop further execution
     }
     try {

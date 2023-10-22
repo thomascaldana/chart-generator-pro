@@ -59,7 +59,8 @@ export const SubmitInput = styled.button`
 `
 
 export const Message = styled.p`
-  
+  color: red;
   font-weight: 500;
+  max-width: 18rem ;
 
 `

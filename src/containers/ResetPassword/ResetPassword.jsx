@@ -95,7 +95,7 @@ const ResetPassword = () => {
       />
 
       <div className="message-box">
-        {message && <Message style={{ color: 'red' }}>{message}</Message>}
+        {message && <Message>{message}</Message>}
 
       </div>
 
