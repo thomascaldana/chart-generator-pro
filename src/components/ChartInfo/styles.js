@@ -3,7 +3,6 @@ import { FiDownload } from 'react-icons/fi'
 
 
 export const ContainerForm = styled.div`
-  background-color: gray;
   margin-top: 6rem;
   padding: 1rem;
   display: flex;

@@ -10,6 +10,7 @@ import ResetPassword from "./containers/ResetPassword/ResetPassword"
 import { StytchHeadlessClient } from '@stytch/vanilla-js/headless'
 import { StytchProvider } from "@stytch/react"
 import MyCharts from "./containers/MyCharts"
+import Footer from "./components/Footer"
 
 
 function App () {
@@ -34,6 +35,7 @@ function App () {
             <Route path="/resetpassword/*" element={<ResetPassword />} />
           </Routes>
         </StytchProvider>
+        <Footer />
       </BrowserRouter>
       <GlobalStyles />
     </div>

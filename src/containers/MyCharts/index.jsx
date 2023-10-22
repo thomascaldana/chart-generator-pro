@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Container, ContainerItems, FirstTitle, Img, DownloadButton, FiDownloadStyled, SavedChartContainer } from './styles'
-import LogoutButton from "../../components/Logout/index.jsx";
-import { Link } from 'react-router-dom';
+import { Container, FirstTitle, Img, DownloadButton, FiDownloadStyled, GlobalContainer } from './styles'
+//import LogoutButton from "../../components/Logout/index.jsx";
+//import { Link } from 'react-router-dom';
 
 
 
@@ -17,22 +17,23 @@ const MyCharts = () => {
   }, []);
 
   return (
-    <Container>
-      <FirstTitle>MY CHARTS</FirstTitle>
-      <ContainerItems>
-        {savedCharts.map((chart) => (
-          <SavedChartContainer key={chart.id}>
-            <Img src={chart.chartUrl} alt={`Chart ${chart.id}`} />
-            {chart.id && ( // Verifique se chart.id é válido antes de renderizar o botão de download
-              <DownloadButton type="button">
-                {<FiDownloadStyled />}
-              </DownloadButton>
-            )}
-          </SavedChartContainer>
-        ))}
-      </ContainerItems>
-      <LogoutButton>Logout</LogoutButton>
-    </Container>
+    <>
+      <FirstTitle>My Charts</FirstTitle>
+      <GlobalContainer>
+        <Container>
+          {savedCharts.map((chart) => (
+            <div className="my-chart-container" key={chart.id}>
+              <Img src={chart.chartUrl} alt={`Chart ${chart.id}`} />
+              {chart.id && (
+                <DownloadButton type="button">
+                  <FiDownloadStyled />
+                </DownloadButton>
+              )}
+            </div>
+          ))}
+        </Container>
+      </GlobalContainer>
+    </>
   );
 };
 

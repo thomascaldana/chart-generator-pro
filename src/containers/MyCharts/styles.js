@@ -1,83 +1,60 @@
-import styled from 'styled-components'
-import { FiDownload } from 'react-icons/fi'
-
+import styled from 'styled-components';
+import { FiDownload } from 'react-icons/fi';
 
 export const FirstTitle = styled.h1`
-font-family: 'Preahvihear',sans-serif;
+  font-family: 'Preahvihear', sans-serif;
   text-align: center;
   font-size: 1.6rem;
-  margin-top: 2.5rem;
+  margin-top: 7rem;
+`;
 
+export const GlobalContainer = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
 `
 
 export const Container = styled.div`
-
-    margin: 7rem auto;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 5rem;
-
-  @media screen and (max-width: 450px){
-    margin: 5rem auto;
-    gap: 2rem;
-  }
-
-`
-export const ContainerItems = styled.div`
-
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-
-  @media screen and (max-width: 450px){
-    margin: 5rem auto;
-    gap: 2rem;
-  }
-
-`
-
-export const FiDownloadStyled = styled(FiDownload)`
-width: 1.2rem;
-height: 1.2rem;
-color: black;
-`
-
-export const ContainerImages = styled.div`
+  margin: 7rem auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-  gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
   align-items: center;
+  justify-content: center;
 
   @media screen and (max-width: 800px) {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   @media screen and (max-width: 450px) {
-    gap: 3rem;
+    gap: 2rem;
+  }
+
+  .my-chart-container{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
   }
 `;
+
 export const Img = styled.img`
   width: 25rem;
   border: 2px dashed lightgray;
 
-  @media screen and (max-width: 1000px){
+  @media screen and (max-width: 1000px) {
     width: 21rem;
   }
 
-  @media screen and (max-width: 800px){
+  @media screen and (max-width: 800px) {
     width: 25rem;
   }
-  
-  @media screen and (max-width: 450px){
+
+  @media screen and (max-width: 450px) {
     width: 17rem;
   }
-
-`
-
+`;
 
 export const DownloadButton = styled.button`
   background-color: lightgray;
@@ -106,14 +83,12 @@ export const DownloadButton = styled.button`
 
   &:hover {
     background-color: #f1f1f1;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow on hover */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   }
-`
+`;
 
-export const SavedChartContainer = styled.div`
-
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-`
+export const FiDownloadStyled = styled(FiDownload)`
+  width: 1.2rem;
+  height: 1.2rem;
+  color: black;
+`;
