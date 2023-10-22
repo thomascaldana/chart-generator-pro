@@ -8,6 +8,20 @@ import { Container, FirstTitle, Img, DownloadButton, FiDownloadStyled, GlobalCon
 const MyCharts = () => {
 
 
+  const downloadChartImage = (chartUrl) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', chartUrl, true);
+    xhr.responseType = 'blob';
+    xhr.onload = function () {
+      const blob = xhr.response;
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'chart.png';
+      link.click();
+    };
+    xhr.send();
+  };
+
   const [savedCharts, setSavedCharts] = useState([]);
 
   useEffect(() => {
@@ -25,7 +39,9 @@ const MyCharts = () => {
             <div className="my-chart-container" key={chart.id}>
               <Img src={chart.chartUrl} alt={`Chart ${chart.id}`} />
               {chart.id && (
-                <DownloadButton type="button">
+                <DownloadButton type="button"
+                  onClick={() => downloadChartImage(chart.chartUrl)}
+                >
                   <FiDownloadStyled />
                 </DownloadButton>
               )}
