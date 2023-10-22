@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, ContainerItems, FirstTitle } from './styles'
+import { Container, ContainerItems, FirstTitle, ContainerImages, Img } from './styles'
 import LogoutButton from "../../components/Logout/index.jsx";
 import { Link } from 'react-router-dom';
 
@@ -23,11 +23,11 @@ const MyCharts = () => {
         {savedCharts.length === 0 ? (
           <h1>You do not have any saved charts yet, <Link to='/'>create now</Link></h1>
         ) : (
-          <div>
+          <ContainerImages>
             {savedCharts.map((chart) => (
-              <img key={chart.id} src={chart.chartUrl} alt={`Chart ${chart.id}`} />
+              <Img key={chart.id} src={chart.chartUrl} alt={`Chart ${chart.id}`} />
             ))}
-          </div>
+          </ContainerImages>
         )}
       </ContainerItems>
       <LogoutButton>Logout</LogoutButton>

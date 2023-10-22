@@ -24,6 +24,21 @@ export const Container = styled.div`
 
 `
 export const ContainerItems = styled.div`
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+
+  @media screen and (max-width: 450px){
+    margin: 5rem auto;
+    gap: 2rem;
+  }
+
+
+`
+export const ContainerImages = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 14rem;
