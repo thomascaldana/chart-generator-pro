@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, ContainerItems, FirstTitle, ContainerImages, Img } from './styles'
+import { Container, ContainerItems, FirstTitle, Img, DownloadButton, FiDownloadStyled, SavedChartContainer } from './styles'
 import LogoutButton from "../../components/Logout/index.jsx";
 import { Link } from 'react-router-dom';
 
@@ -20,15 +20,16 @@ const MyCharts = () => {
     <Container>
       <FirstTitle>MY CHARTS</FirstTitle>
       <ContainerItems>
-        {savedCharts.length === 0 ? (
-          <h1>You do not have any saved charts yet, <Link to='/'>create now</Link></h1>
-        ) : (
-          <ContainerImages>
-            {savedCharts.map((chart) => (
-              <Img key={chart.id} src={chart.chartUrl} alt={`Chart ${chart.id}`} />
-            ))}
-          </ContainerImages>
-        )}
+        {savedCharts.map((chart) => (
+          <SavedChartContainer key={chart.id}>
+            <Img src={chart.chartUrl} alt={`Chart ${chart.id}`} />
+            {chart.id && ( // Verifique se chart.id é válido antes de renderizar o botão de download
+              <DownloadButton type="button">
+                {<FiDownloadStyled />}
+              </DownloadButton>
+            )}
+          </SavedChartContainer>
+        ))}
       </ContainerItems>
       <LogoutButton>Logout</LogoutButton>
     </Container>
