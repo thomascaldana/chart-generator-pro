@@ -61,6 +61,22 @@ const ChartInfo = () => {
     }
   };
 
+  const saveChartToLocal = () => {
+    if (chartUrl) {
+      const savedCharts = JSON.parse(localStorage.getItem('savedCharts')) || [];
+      const newChart = {
+        id: Date.now(), // You can generate a unique ID for the chart
+        chartUrl: chartUrl,
+        // Include other relevant data if needed
+      };
+      savedCharts.push(newChart);
+      localStorage.setItem('savedCharts', JSON.stringify(savedCharts));
+      // Optionally, you can redirect the user to the saved charts page after saving
+      // Implement the redirection logic here
+      console.log('saved')
+    }
+  };
+
   const deleteLastInputPair = () => {
     if (inputPairs.length > 3) {
       setInputPairs(prevInputPairs => prevInputPairs.slice(0, -1));
@@ -235,10 +251,14 @@ const ChartInfo = () => {
         <ImageContainer>
           {chartUrl && <ChartImg src={chartUrl} alt="chart" />}
           {chartUrl && (
-            <DownloadButton type="button" onClick={downloadChartImage}>
-              <p>Download Chart</p>
-              {<FiDownloadStyled />}
-            </DownloadButton>
+            <>
+              <DownloadButton type="button" onClick={downloadChartImage}>
+                <p>Download Chart</p>
+                {<FiDownloadStyled />}
+              </DownloadButton>
+
+              <button onClick={saveChartToLocal}>Save in My Charts</button>
+            </>
           )}
         </ImageContainer>
 
