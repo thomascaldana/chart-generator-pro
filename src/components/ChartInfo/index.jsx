@@ -4,6 +4,8 @@ import QuickChart from 'quickchart-js';
 import { useForm, Controller } from "react-hook-form";
 import { ContainerForm, Input, SubmitInput, ImageContainer, ChartImg, FiDownloadStyled, AddButton, DeleteButton, DownloadButton, InfoInputs, SelectItemStyles, ContainerFirstInputs, FirtTitle, SecondTitle, ContainerItems } from './styles'
 import { FcPieChart, FcDoughnutChart, FcBarChart, FcLineChart } from "react-icons/fc";
+import { useNavigate } from 'react-router-dom';
+import { useAuth2 } from "../../hooks/useAuth";
 
 const chartTypes = [
   { value: "pie", label: "Pie", icon: <FcPieChart /> },
@@ -13,6 +15,7 @@ const chartTypes = [
 ];
 
 const ChartInfo = () => {
+  const navigate = useNavigate();
   const { register, handleSubmit, control } = useForm();
   const [isNotBarOrLine, setIsNotBarOrLine] = useState(true);
   const [data, setData] = useState({});
@@ -24,7 +27,7 @@ const ChartInfo = () => {
   ]);
 
   const customSelectStyles = {
-    control: (provided, state) => ({
+    control: (provided) => ({
       ...provided,
       backgroundColor: '#ffffff',
       width: '14rem',
@@ -35,7 +38,7 @@ const ChartInfo = () => {
       color: 'black'
 
     }),
-    menu: (provided, state) => ({
+    menu: (provided) => ({
       ...provided,
       backgroundColor: '#f1f1f1',
       paddingTop: '20px',
@@ -44,6 +47,7 @@ const ChartInfo = () => {
       paddingRight: '5px'
     }),
   };
+
 
   const downloadChartImage = () => {
     if (chartUrl) {
@@ -61,21 +65,28 @@ const ChartInfo = () => {
     }
   };
 
+  const { isLoggedIn } = useAuth2();
+  console.log(isLoggedIn)
+
   const saveChartToLocal = () => {
-    if (chartUrl) {
-      const savedCharts = JSON.parse(localStorage.getItem('savedCharts')) || [];
-      const newChart = {
-        id: Date.now(), // You can generate a unique ID for the chart
-        chartUrl: chartUrl,
-        // Include other relevant data if needed
-      };
-      savedCharts.push(newChart);
-      localStorage.setItem('savedCharts', JSON.stringify(savedCharts));
-      // Optionally, you can redirect the user to the saved charts page after saving
-      // Implement the redirection logic here
-      console.log('saved')
+    if (isLoggedIn) {
+      if (chartUrl) {
+        const savedCharts = JSON.parse(localStorage.getItem('savedCharts')) || [];
+        const newChart = {
+          id: Date.now(), // You can generate a unique ID for the chart
+          chartUrl: chartUrl,
+          // Include other relevant data if needed
+        };
+        savedCharts.push(newChart);
+        localStorage.setItem('savedCharts', JSON.stringify(savedCharts));
+        // Optionally, you can redirect the user to the saved charts page after saving
+        // Implement the redirection logic here
+        console.log('saved');
+      }
+    } else {
+      navigate('/auth')
     }
-  };
+  }
 
   const deleteLastInputPair = () => {
     if (inputPairs.length > 3) {
