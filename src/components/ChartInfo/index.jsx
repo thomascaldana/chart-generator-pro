@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import QuickChart from 'quickchart-js';
 import { useForm, Controller } from "react-hook-form";
-import { ContainerForm, Input, SubmitInput, ImageContainer, ChartImg, FiDownloadStyled, AddButton, DeleteButton, DownloadButton, InfoInputs, SelectItemStyles, ContainerFirstInputs, FirtTitle, SecondTitle, ContainerItems } from './styles'
+import { ContainerForm, Input, SubmitInput, ImageContainer, ChartImg, FiDownloadStyled, AddButton, DeleteButton, GrayButton, InfoInputs, SelectItemStyles, ContainerFirstInputs, FirtTitle, SecondTitle, ContainerItems } from './styles'
 import { FcPieChart, FcDoughnutChart, FcBarChart, FcLineChart } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 import { useAuth2 } from "../../hooks/useAuth";
@@ -263,12 +263,12 @@ const ChartInfo = () => {
           {chartUrl && <ChartImg src={chartUrl} alt="chart" />}
           {chartUrl && (
             <>
-              <DownloadButton type="button" onClick={downloadChartImage}>
+              <GrayButton type="button" onClick={downloadChartImage}>
                 <p>Download Chart</p>
                 {<FiDownloadStyled />}
-              </DownloadButton>
+              </GrayButton>
 
-              <button onClick={saveChartToLocal}>Save in My Charts</button>
+              <GrayButton onClick={saveChartToLocal}>Save in My Charts</GrayButton>
             </>
           )}
         </ImageContainer>

@@ -135,7 +135,7 @@ background-color: red;
     background-color: darkred;
   }
 `
-export const DownloadButton = styled.button`
+export const GrayButton = styled.button`
   background-color: lightgray;
   color: black;
   border: none;
