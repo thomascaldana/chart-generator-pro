@@ -15,11 +15,8 @@ import Footer from "./components/Footer"
 
 function App () {
 
-  const stytchClient = new StytchHeadlessClient("public-token-test-3f407f39-b779-440c-a64c-18d260212048")
-  // relax, this token is old, used just for testing, you won't be able to use that
-
-  // when publishing create a token in GithuB and a Env key to improve secure about the key
-
+  const stytchToken = import.meta.env.VITE_STYTCH_TOKEN;
+  const stytchClient = new StytchHeadlessClient(stytchToken);
 
   return (
     <div className="App">
