@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Input, FirstTitle, SubmitInput, Message } from './Styles.js'
+import { Container, Input, FirstTitle, SubmitInput, Message } from './styles.js'
 import { useStytch } from "@stytch/react";
 import { ToastContainer, toast } from 'react-toastify';
 
