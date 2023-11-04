@@ -18,6 +18,8 @@ function App () {
   const stytchToken = import.meta.env.VITE_STYTCH_TOKEN;
   const stytchClient = new StytchHeadlessClient(stytchToken);
 
+  // adding new comment
+
   return (
     <div className="App">
       <BrowserRouter >
