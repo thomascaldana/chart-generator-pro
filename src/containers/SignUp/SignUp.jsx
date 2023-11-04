@@ -29,7 +29,6 @@ const SignUp = () => {
       logout()
       showLoadingToast();
       const strengthCheckResponse = await stytchClient.passwords.strengthCheck({ email, password });
-      console.log("Strength Check Success", strengthCheckResponse);
 
       // Create user account
       const createResponse = await stytchClient.passwords.create({
@@ -37,7 +36,6 @@ const SignUp = () => {
         password,
         session_duration_minutes: 60
       });
-      console.log("User Created", createResponse);
 
       setMessage("Account created successfully!");
       hideLoadingToast();
@@ -51,7 +49,7 @@ const SignUp = () => {
       notifyError(error.error_message);
       setMessage(error.error_message || "An error occurred while signing up.");
 
-      //console.error(JSON.stringify(error, null, 2));
+
     }
   };
 

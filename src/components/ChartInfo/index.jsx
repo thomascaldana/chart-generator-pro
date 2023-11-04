@@ -66,7 +66,6 @@ const ChartInfo = () => {
   };
 
   const { isLoggedIn } = useAuth2();
-  console.log(isLoggedIn)
 
   const saveChartToLocal = () => {
     if (isLoggedIn) {
@@ -81,7 +80,6 @@ const ChartInfo = () => {
         localStorage.setItem('savedCharts', JSON.stringify(savedCharts));
         // Optionally, you can redirect the user to the saved charts page after saving
         // Implement the redirection logic here
-        console.log('saved');
       }
     } else {
       navigate('/auth')
