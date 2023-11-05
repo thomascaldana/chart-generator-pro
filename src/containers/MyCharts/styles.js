@@ -134,3 +134,52 @@ export const FiTrash2Styled = styled(FiTrash2)`
   height: 1.2rem;
   color: black;
 `;
+
+export const DeleteConfirmation = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent gray */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+    font-size: 1.4rem;
+    width: 25rem;
+    height: 15rem;
+    background-color: white;
+    border: 2px solid black;
+    padding: 20px;
+    text-align: center;
+    border-radius: 7px;
+    margin: 0 1rem;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+
+    button {
+      margin-top: 10px;
+      margin-left: 10px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 1.3rem;
+
+     
+    }
+    .confirm-delete-button {
+        background-color: pink;
+        border: 2px solid red;
+      }
+
+      .cancel-button {
+        background-color: lightgray;
+      }
+  }
+`;
+

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, FirstTitle, Img, DownloadButton, FiDownloadStyled, GlobalContainer, FiTrash2Styled, DeleteButton, ButtonsContainer } from './styles'
+import { Container, FirstTitle, Img, DownloadButton, FiDownloadStyled, GlobalContainer, FiTrash2Styled, DeleteButton, ButtonsContainer, DeleteConfirmation } from './styles'
 //import LogoutButton from "../../components/Logout/index.jsx";
 //import { Link } from 'react-router-dom';
 
@@ -7,6 +7,8 @@ import { Container, FirstTitle, Img, DownloadButton, FiDownloadStyled, GlobalCon
 
 const MyCharts = () => {
 
+  const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
+  const [chartToDelete, setChartToDelete] = useState(null);
 
   const downloadChartImage = (chartUrl) => {
     const xhr = new XMLHttpRequest();
@@ -23,15 +25,22 @@ const MyCharts = () => {
   };
 
   const deleteChart = (chartId) => {
-    // Retrieve saved chart data from local storage
     const storedCharts = JSON.parse(localStorage.getItem('savedCharts')) || [];
-    // Filter out the chart with the specified id
     const updatedCharts = storedCharts.filter((chart) => chart.id !== chartId);
-    // Update the local storage with the updated chart data
+
+    if (updatedCharts.length === storedCharts.length) {
+      // If no charts were deleted, return
+      return;
+    }
+
     localStorage.setItem('savedCharts', JSON.stringify(updatedCharts));
-    // Update state to trigger re-render and display the updated charts
     setSavedCharts(updatedCharts);
+
+    // Reset chartToDelete and hide the confirmation dialog
+    setChartToDelete(null);
+    setShowDeleteConfirmation(false);
   };
+
 
   const [savedCharts, setSavedCharts] = useState([]);
 
@@ -57,7 +66,10 @@ const MyCharts = () => {
 
                     <FiDownloadStyled />
                   </DownloadButton>
-                  <DeleteButton type="button" onClick={() => deleteChart(chart.id)}>
+                  <DeleteButton type="button" onClick={() => {
+                    setChartToDelete(chart.id);
+                    setShowDeleteConfirmation(true);
+                  }}>
                     <FiTrash2Styled /> {/* Trash can icon */}
                   </DeleteButton>
                 </ButtonsContainer>
@@ -67,6 +79,17 @@ const MyCharts = () => {
           ))}
         </Container>
       </GlobalContainer>
+      {showDeleteConfirmation && (
+        <DeleteConfirmation>
+          <wrapper>
+            <p>Are you sure you want to delete this chart?</p>
+            <div>
+              <button className="confirm-delete-button" onClick={() => deleteChart(chartToDelete)}>Yes, Delete</button>
+              <button className="cancel-button" onClick={() => setShowDeleteConfirmation(false)}>Cancel</button>
+            </div>
+          </wrapper>
+        </DeleteConfirmation>
+      )}
     </>
   );
 };
