@@ -4,12 +4,12 @@ export const useAuth = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const userData = localStorage.getItem("stytch_sdk_state_public-token-test-3f407f39-b779-440c-a64c-18d260212048");
+    const userData = localStorage.getItem(import.meta.env.VITE_STYTCH_TOKEN_AUTH);
     setIsLoggedIn(userData !== null && userData !== "null");
-  }, []);
+  }, [isLoggedIn]);
 
   const handleLogout = () => {
-    localStorage.removeItem("stytch_sdk_state_public-token-test-3f407f39-b779-440c-a64c-18d260212048");
+    localStorage.removeItem(import.meta.env.VITE_STYTCH_TOKEN_AUTH);
     setIsLoggedIn(false);
   };
 
@@ -18,13 +18,17 @@ export const useAuth = () => {
     handleLogout
   };
 };
+
 export const useAuth2 = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const userData = localStorage.getItem("stytch_sdk_state_public-token-test-3f407f39-b779-440c-a64c-18d260212048");
-    setIsLoggedIn(userData !== null && userData !== "null");
-  }, []);
+    const userData = localStorage.getItem(import.meta.env.VITE_STYTCH_TOKEN_AUTH);
+    if (userData !== null) {
+
+      setIsLoggedIn(true);
+    }
+  }, [isLoggedIn]);
 
 
   return {
