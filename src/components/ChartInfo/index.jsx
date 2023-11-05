@@ -6,6 +6,11 @@ import { ContainerForm, Input, SubmitInput, ImageContainer, ChartImg, FiDownload
 import { FcPieChart, FcDoughnutChart, FcBarChart, FcLineChart } from "react-icons/fc";
 import { useNavigate } from 'react-router-dom';
 import { useAuth2 } from "../../hooks/useAuth";
+import LogoutButton from "../../components/Logout/index";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const chartTypes = [
   { value: "pie", label: "Pie", icon: <FcPieChart /> },
@@ -48,6 +53,16 @@ const ChartInfo = () => {
     }),
   };
 
+  const notifySuccess = (message) => toast.success(message, {
+    position: "top-center",
+    autoClose: 1200,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
 
   const downloadChartImage = () => {
     if (chartUrl) {
@@ -72,14 +87,13 @@ const ChartInfo = () => {
       if (chartUrl) {
         const savedCharts = JSON.parse(localStorage.getItem('savedCharts')) || [];
         const newChart = {
-          id: Date.now(), // You can generate a unique ID for the chart
+          id: Date.now(),
           chartUrl: chartUrl,
-          // Include other relevant data if needed
+
         };
         savedCharts.push(newChart);
         localStorage.setItem('savedCharts', JSON.stringify(savedCharts));
-        // Optionally, you can redirect the user to the saved charts page after saving
-        // Implement the redirection logic here
+        notifySuccess('Chart saved');
       }
     } else {
       navigate('/auth')
@@ -270,8 +284,10 @@ const ChartInfo = () => {
             </>
           )}
         </ImageContainer>
+        <LogoutButton>Logout</LogoutButton>
 
       </ContainerItems>
+      <ToastContainer />
 
     </ContainerForm>
   );

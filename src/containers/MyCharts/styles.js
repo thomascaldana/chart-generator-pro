@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { FiDownload } from 'react-icons/fi';
+import { FiDownload, FiTrash2 } from 'react-icons/fi';
 
 export const FirstTitle = styled.h1`
   font-family: 'Preahvihear', sans-serif;
@@ -56,7 +56,44 @@ export const Img = styled.img`
   }
 `;
 
+export const ButtonsContainer = styled.div`
+display: flex;
+flex-flow: row nowrap;
+justify-content: center;
+align-items: center;
+gap: 2rem;
+`
 export const DownloadButton = styled.button`
+  background-color: lightgray;
+  color: black;
+  border: none;
+  margin: 5px 0;
+  padding: 5px;
+  font-size: 16px;
+  display: block;
+  appearance: none;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 2rem;
+  font-weight: 400;
+  transition: 0.3s all;
+  cursor: pointer;
+  text-align: center;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+
+
+
+  &:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+`;
+export const DeleteButton = styled.button`
   background-color: lightgray;
   color: black;
   border: none;
@@ -88,6 +125,11 @@ export const DownloadButton = styled.button`
 `;
 
 export const FiDownloadStyled = styled(FiDownload)`
+  width: 1.2rem;
+  height: 1.2rem;
+  color: black;
+`;
+export const FiTrash2Styled = styled(FiTrash2)`
   width: 1.2rem;
   height: 1.2rem;
   color: black;

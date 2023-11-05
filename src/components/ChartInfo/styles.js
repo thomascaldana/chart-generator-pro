@@ -236,6 +236,7 @@ export const ContainerFirstInputs = styled.div`
 `
 
 export const FirtTitle = styled.h1`
+  margin-top: 1rem;
   font-size: 1.6rem;
   font-family: 'Preahvihear',sans-serif;
   text-align: center;
@@ -258,4 +259,3 @@ text-align: center;
     margin-bottom: 1.5rem;
   }
 `
-
