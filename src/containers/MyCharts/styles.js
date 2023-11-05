@@ -94,7 +94,7 @@ export const DownloadButton = styled.button`
   }
 `;
 export const DeleteButton = styled.button`
-  background-color: lightgray;
+  background-color: #f54033;
   color: black;
   border: none;
   margin: 5px 0;
